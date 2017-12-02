@@ -1,7 +1,7 @@
 ---
 title: "Aides Tests"
-author: "Dr K"
-date: "May 24, 2017"
+author: "Damaris Avila"
+date: "December 2017"
 output: html_document
 ---
 
@@ -9,9 +9,26 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 require(tigerstats)
 require(dplyr)
+
 Scarolina<-read.csv(file="south_carolina_aides.csv",header=TRUE)
+ScarolinaF<-filter(Scarolina, sex=="F")
+ScarolinaM<-filter(Scarolina, sex=="M")
+ScarolinaFtable<-table(ScarolinaF$infected, ScarolinaF$group)
+ScarolinaMtable<-table(ScarolinaM$infected, ScarolinaM$group)
+ScarolinaALLtable<-table(Scarolina$infected, Scarolina$group)
+
 korea<-read.csv(file="korea_aides.csv",header=TRUE)
+koreaF<-filter(korea, sex=="F")
+koreaM<-filter(korea, sex=="M")
+koreaMtable<-table(koreaM$infected, koreaM$group)
+koreaFtable<-table(koreaF$infected, koreaF$group)
+
+
 cenAfrica<-read.csv(file="central_africa_aides.csv",header=TRUE)
+cenAfricaF<-filter(cenAfrica, sex=="F")
+cenAfricaM<-filter(cenAfrica, sex=="M")
+cenAfricaFtable<-table(cenAfricaF$infected, cenAfricaF$group)
+cenAfricaMtable<-table(cenAfricaM$infected, cenAfricaM$group)
 ```
 
 #Instructions
@@ -21,7 +38,28 @@ Three new preventative aides drugs were tested in clinical trials in 2015. The t
 
 # South Carolina
 
-We will subset the data by sex to see if the drug is sex specific.
+We will subset the data by sex to see if the drug is sex specific.  
+## South Carolina Females  
+
+The following is a bar chart of South Carolina females who were tested in the clinical trials. 
+```{r}
+barchartGC(ScarolinaFtable, type="percent")
+```
+
+The following is a bar chart of South Carolina males who were tested in the clinical trials. 
+```{r}
+barchartGC(ScarolinaMtable, type="percent")
+```
+
+
+The following is a bar chart of all the South Carolina individuals who were tested in the clinical trials.
+```{r}
+barchartGC(ScarolinaALLtable, type="percent")
+```
+
+
+
+
 
 
 # Central Africa
