@@ -22,6 +22,7 @@ koreaF<-filter(korea, sex=="F")
 koreaM<-filter(korea, sex=="M")
 koreaMtable<-table(koreaM$infected, koreaM$group)
 koreaFtable<-table(koreaF$infected, koreaF$group)
+koreaALLtable<-table(korea$infected, korea$group)
 
 
 cenAfrica<-read.csv(file="central_africa_aides.csv",header=TRUE)
@@ -29,6 +30,7 @@ cenAfricaF<-filter(cenAfrica, sex=="F")
 cenAfricaM<-filter(cenAfrica, sex=="M")
 cenAfricaFtable<-table(cenAfricaF$infected, cenAfricaF$group)
 cenAfricaMtable<-table(cenAfricaM$infected, cenAfricaM$group)
+cenAfricaALLtable<-table(cenAfrica$infected, cenAfrica$group)
 ```
 
 #Instructions
@@ -38,17 +40,34 @@ Three new preventative aides drugs were tested in clinical trials in 2015. The t
 
 # South Carolina
 
-We will subset the data by sex to see if the drug is sex specific.  
-## South Carolina Females  
+We will subset the data by sex to see if the drug is sex specific. Then we will evaluate the group as a whole.    
+# #  South Carolina Females  
 
-The following is a bar chart of South Carolina females who were tested in the clinical trials. 
+The following is a bar chart of South Carolina females who were tested in the clinical trials. The graph shows 60% of those females who were infected with AIDS were taking the placebo, while 40% of those infected were taking the tested drug. Of those females who were not infected with AIDS slightly more were taking the drug than those who were taking the placebo.  
 ```{r}
-barchartGC(ScarolinaFtable, type="percent")
+barchartGC(ScarolinaFtable, type="percent", xlab="Group", ylab="Percent")
 ```
+
+The following are the row percents of the South Carolina females who were tested in the clinical trials. Of those who were infected 38.83% were taking the test drug and 61.17% were taking the placebo. There is a significant difference between these results, demonstrating the drug's efficacy. Furhtermore, of those who were not infected with AIDS, 50.55% were taking the tested drug, and 49.45% were taking the placebo. 
+```{r}
+rowPerc(ScarolinaFtable)
+```
+
+The following is the chi squared test of the table of females who were tested in the clinical trials in South Carolina. 
+```{r}
+chisqtestGC(ScarolinaFtable, graph= TRUE)
+```
+*My null hypothesis is:*  
+**H~0~** : The vaccine is NOT effective in preventing HIV.  
+*My alternate hypothesis is:*  
+**H~a~** : The vaccine IS effective in preventing HIV.  
+
+The chi squared statistic is 4.9298 which is a measure of how different our two way table is from our expected two way table if our null hypothesis, shown above, was true. This also resulted in a p-value of 0.0264, or a 2.64% chance of getting a chi squared value of 4.9298 or higher if the null was actually true and the drug, vaccine, is NOT effective in preventing AIDS. Because our p-value is lower than 5%, we can reject the null, and say we have shown enough data to show the vaccine is effective to some degree in preventing AIDS. 
+
 
 The following is a bar chart of South Carolina males who were tested in the clinical trials. 
 ```{r}
-barchartGC(ScarolinaMtable, type="percent")
+barchartGC(ScarolinaMtable, type="percent", xlab="Group", ylab="Percent")
 ```
 
 
@@ -64,16 +83,43 @@ barchartGC(ScarolinaALLtable, type="percent")
 
 # Central Africa
 
-We will subset the data by sex to see if the drug is sex specific.
+We will subset the data by sex to see if the drug is sex specific. Then we will evaluate the group as a whole
+
+The following is a bar chart of Central Africa females who were tested in the clinical trials. 
+```{r}
+barchartGC(cenAfricaFtable, type="percent", xlab="Group", ylab="Percent")
+```
+
+The following is a barchart of Central Africa males who were tested in the clinical trials. 
+```{r}
+barchartGC(cenAfricaMtable, type="percent", xlab="Group", ylab="Percent")
+```
+
+The following is a barchart of all Central Africa individuals who were tested in the clinical trials. 
+
+```{r}
+barchartGC(cenAfricaALLtable, type="percent", xlab="Group", ylab="Percent")
+```
+
 
 
 
 # Korea
 
-We will subset the data by sex to see if the drug is sex specific.
+We will subset the data by sex to see if the drug is sex specific. Then we will evaluate the group as a whole.
 
+The following is a barchart of Korean females who were tested in the clinical trials. 
+```{r}
+barchartGC(koreaFtable, type="percent", xlab="Group", ylab="Percent")
+```
 
+The following is a bar chart of Korean males who were tested in the clinical trials.   
+```{r}
+barchartGC(koreaMtable, type="percent", xlab="Group", ylab="Percent")
+```
 
-
-
+The following is a bar chart of all Korean indiviiduals who were tested in the clinical trials.   
+```{r}
+barchartGC(koreaALLtable, type="percent", xlab="Group", ylab="Percent")
+```
 
