@@ -48,7 +48,7 @@ The following is a bar chart of South Carolina females who were tested in the cl
 barchartGC(ScarolinaFtable, type="percent", xlab="Group", ylab="Percent")
 ```
 
-The following are the row percents of the South Carolina females who were tested in the clinical trials. Of those who were infected 38.83% were taking the test drug and 61.17% were taking the placebo. There is a significant difference between these results, demonstrating the drug's efficacy. Furhtermore, of those who were not infected with AIDS, 50.55% were taking the tested drug, and 49.45% were taking the placebo. 
+The following are the row percents of the South Carolina females who were tested in the clinical trials. Of those who were infected 38.83% were taking the test drug and 61.17% were taking the placebo. There is a significant difference between these results, demonstrating the drug's efficacy. Furhtermore, of those who were not infected with AIDS, 50.55% were taking the tested drug, and 49.45% were taking the placebo.
 ```{r}
 rowPerc(ScarolinaFtable)
 ```
@@ -58,27 +58,79 @@ The following is the chi squared test of the table of females who were tested in
 chisqtestGC(ScarolinaFtable, graph= TRUE)
 ```
 *My null hypothesis is:*  
-**H~0~** : The vaccine is NOT effective in preventing HIV.  
+**H~0~** : The vaccine, or drug,  is NOT effective in preventing HIV.  
 *My alternate hypothesis is:*  
-**H~a~** : The vaccine IS effective in preventing HIV.  
+**H~a~** : The vaccine, or drug, IS effective in preventing HIV.  
 
-The chi squared statistic is 4.9298 which is a measure of how different our two way table is from our expected two way table if our null hypothesis, shown above, was true. This also resulted in a p-value of 0.0264, or a 2.64% chance of getting a chi squared value of 4.9298 or higher if the null was actually true and the drug, vaccine, is NOT effective in preventing AIDS. Because our p-value is lower than 5%, we can reject the null, and say we have shown enough data to show the vaccine is effective to some degree in preventing AIDS. 
+The chi squared statistic is 4.9298 which is a measure of how different our two way table is from our expected two way table if our null hypothesis, shown above, was true. This also resulted in a p-value of 0.0264, or a 2.64% chance of getting a chi squared value of 4.9298 or higher if the null was actually true and the drug, vaccine, is NOT effective in preventing AIDS. Because our p-value is lower than 5%, we can reject the null, and say we have shown enough data to show the vaccine is effective to some degree in preventing AIDS in females in South Carolina. 
 
 
-The following is a bar chart of South Carolina males who were tested in the clinical trials. 
+The following is a bar chart of South Carolina males who were tested in the clinical trials. This bar chart shows about 56% of those infected with AIDS had taken the drug, while just over 40% were taking the placebo. These numbers show a lack of efficacy in the prevention of AIDS. Also, of those who were not infected, percentages were very close to even, about 51% were taking the placebo and 49% were taking the drug. 
 ```{r}
 barchartGC(ScarolinaMtable, type="percent", xlab="Group", ylab="Percent")
 ```
 
 
-The following is a bar chart of all the South Carolina individuals who were tested in the clinical trials.
+The following are the row percents of the South Carolina males who were tested in the clinical trials. Supporting the bar chart above, of those infected with AIDS, 57.35% were taking the drug, while 42.65% were taking the placebo. Further supporting the ineffectiveness of the drug. Also, of those not infected 49.52% were taking the drug, while 50.48% were taking the placebo. 
+```{r}
+rowPerc(ScarolinaMtable)
+```
+
+The following is a chi-squared test for the South Carolina males who were tested in the clinical trials. 
+```{r}
+chisqtestGC(ScarolinaMtable, graph= TRUE)
+```
+
+*My null hypothesis is:*  
+**H~0~** : The vaccine, or drug,  is NOT effective in preventing HIV.  
+*My alternate hypothesis is:*  
+**H~a~** : The vaccine, or drug, IS effective in preventing HIV.  
+
+The chi-square test above resulted in a chi-squared statistic of 2.8293 which is a measure of how different our two way
+table is from our expected two way table if our null hypothesis, shown above, was true. This test also resulted in a
+p-value of 0.0926, or a 9.26% chance of getting a chi-squared value of 2.8293 or higher if the null was actually true and
+the drug, vaccine, is NOT effective in preventing AIDS. Since we expected the percentage of people who were infected and
+taking the drug, or vaccine, to be less than those taking the placebo, the p-value is high and we are not to reject the
+null and have failed to prove the alternate. We can say there has not been enough evidence to disprove the null hypothesis
+nor prove the alternate for the South Carolina males who were tested in the clinical trials. 
+
+
+
+The following is a bar chart of all the South Carolina individuals who were tested in the clinical trials. In this graph, all the individuals are accounted for for an overall analysis of the drug tested in South Carolina. This graph shows a higher percentage of individuals who were infected with AIDS were taking the placebo, about 51% than those who were taking the drug, about 49%
 ```{r}
 barchartGC(ScarolinaALLtable, type="percent")
 ```
 
+The following are the row percents of all the South Carolina individuals who were tested in the clinical trials. In support to the bar chart above, of those individuals who were infected 49.37% were taking the tested drug and 50.63% were taking the placebo. These numbers show an inefficacy of the tested drugs for the group overall. 
+```{r}
+rowPerc(ScarolinaALLtable)
+```
 
 
+The following is a chi-squared test of all the South Carolina individuals who were tested in the clincal trials. 
+```{r}
+chisqtestGC(ScarolinaALLtable, graph= TRUE)
+```
 
+*My null hypothesis is:*  
+**H~0~** : The vaccine, or drug,  is NOT effective in preventing HIV.  
+*My alternate hypothesis is:*  
+**H~a~** : The vaccine, or drug, IS effective in preventing HIV.  
+
+The chi-square test above resulted in a chi-squared statistic of 0.0177 which is a measure of how different our two way
+table is from our expected two way table if our null hypothesis, shown above, was true. This test also resulted in a
+p-value of 0.8942, or a 89.42% chance of getting a chi-squared value of 0.0177 or higher if the null was actually true and
+the drug, vaccine, is NOT effective in preventing AIDS. Since we expected the percentage of people who were infected and
+taking the drug, or vaccine, to be less than those taking the placebo, the p-value is high and we are not to reject the
+null and have failed to prove the alternate. We can say there has not been enough evidence to disprove the null hypothesis
+nor prove the alternate for the South Carolina males who were tested in the clinical trials.
+
+
+By looking at the group as a whole and the extremely high p-value when analyzing all the South Carolina individuals we can
+say the vaccine is definitely not effective in preventive the infection. However, when we seperate the indivudals by sex 
+we can see the drug was actually effective to a small degree in the females. There is a big change in numbers when
+analyzing the males. There might be a biological reason behind it, but in conclusion, this drug was effective in females, 
+not males, and could be a drug that would be beneficial to recommend females take. 
 
 
 # Central Africa
